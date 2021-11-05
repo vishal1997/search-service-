@@ -1,0 +1,50 @@
+swagger:
+  resourcePackage: com.youtube.search.resource
+
+
+########## DROPWIZARD SPECIFIC CONFIGURATION ##########
+server:
+  rootPath: /youtube
+  applicationConnectors:
+   - type: http
+     port: 8088
+  adminConnectors:
+   - type: http
+     port: 8089
+
+  # HTTP request log settings.
+  requestLog:
+    appenders:
+      - type: console
+        threshold: INFO
+        timeZone: IST
+        target: stdout
+
+# Logging settings.
+logging:
+  level: INFO
+  appenders:
+    - type: console
+      threshold: DEBUG
+      timeZone: IST
+      target: stdout
+
+youtubeHttpConfig:
+  httpClientTimeToLiveInMs: 10000
+  httpClientMaxTotal: 10
+  httpClientMaxTotalPerRoute: 10
+  httpClientConnectTimeoutMs: 10000
+  httpClientSocketTimeoutMs: 10000
+
+searchRequest:
+  query: cricket
+  type: video
+  part: ["snippet"]
+
+schedulerConfig:
+  initialDelay: 10
+  period: 10
+  threadPool: 2
+
+googleSearchApi: https://www.googleapis.com/youtube/v3/search
+googleSearchApiKey: AIzaSyBxDx703YPymTIxTgi6uS_NFUMFm-M3dso

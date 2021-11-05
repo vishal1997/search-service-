@@ -1,4 +1,4 @@
-package com.youtube.search.model.response;
+package com.youtube.search.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,4 +13,5 @@ public class SchedulerConfig {
 
     private long initialDelay;
     private long period;
+    private int threadPool;
 }

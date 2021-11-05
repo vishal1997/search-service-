@@ -1,4 +1,4 @@
-package com.youtube.search.model;
+package com.youtube.search.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
