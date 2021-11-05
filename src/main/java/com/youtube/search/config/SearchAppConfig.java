@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -31,4 +32,7 @@ public class SearchAppConfig extends Configuration {
     private String googleSearchApiKey;
 
     private SearchRequest searchRequest;
+
+    @JsonProperty("elasticsearch")
+    private List<String> elasticsearchHosts;
 }

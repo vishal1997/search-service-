@@ -10,6 +10,7 @@ public class YoutubeDataManagerRunnable implements Runnable {
 
     public YoutubeDataManagerRunnable(YoutubeDataManager youtubeDataManager, SearchAppConfig config) {
         this.youtubeDataManager = youtubeDataManager;
+        this.config = config;
     }
 
     @Override

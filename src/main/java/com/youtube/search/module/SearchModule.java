@@ -8,10 +8,17 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import com.youtube.search.config.SearchAppConfig;
+import com.youtube.search.dao.YoutubeDataDao;
+import com.youtube.search.dao.impl.YoutubeDataDaoImpl;
+import com.youtube.search.manager.YoutubeDataManager;
+import com.youtube.search.manager.impl.YoutubeDataManagerImpl;
+import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestHighLevelClient;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -21,6 +28,8 @@ public class SearchModule extends AbstractModule {
     @Override
     protected void configure() {
 
+        bind(YoutubeDataManager.class).to(YoutubeDataManagerImpl.class);
+        bind(YoutubeDataDao.class).to(YoutubeDataDaoImpl.class);
     }
 
     @Provides
@@ -71,5 +80,14 @@ public class SearchModule extends AbstractModule {
         ObjectMapper objectMapper = new ObjectMapper().disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         objectMapper.registerModule(new GuavaModule());
         return objectMapper;
+    }
+
+    @Provides
+    @Singleton
+    RestHighLevelClient provideElasticSearchClient(SearchAppConfig config) {
+        HttpHost[] httpHosts = config.getElasticsearchHosts().stream()
+                .map(HttpHost::create)
+                .toArray(HttpHost[]::new);
+        return new RestHighLevelClient(RestClient.builder(httpHosts));
     }
 }
