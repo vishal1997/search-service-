@@ -1,12 +1,12 @@
 package com.youtube.exception;
 
-public class HttpException extends Exception {
+public class YoutubeSearchException extends HttpException {
 
-    public HttpException(String msg, Throwable t) {
+    public YoutubeSearchException(String msg, Throwable t) {
         super(msg, t);
     }
 
-    public HttpException(String msg) {
+    public YoutubeSearchException(String msg) {
         super(msg);
     }
 }
