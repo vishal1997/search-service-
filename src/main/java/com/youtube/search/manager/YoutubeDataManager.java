@@ -5,7 +5,7 @@ import com.youtube.search.model.response.youtube.SearchResponse;
 
 import java.util.List;
 
-public interface SearchManager {
+public interface YoutubeDataManager {
 
-    SearchResponse search(SearchRequest searchRequest);
+    void populateData(SearchRequest searchRequest);
 }

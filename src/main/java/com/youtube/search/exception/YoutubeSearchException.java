@@ -1,4 +1,4 @@
-package com.youtube.exception;
+package com.youtube.search.exception;
 
 public class YoutubeSearchException extends HttpException {
 

@@ -3,8 +3,7 @@ package com.youtube.search;
 import com.google.inject.Stage;
 import com.hubspot.dropwizard.guice.GuiceBundle;
 import com.youtube.search.config.SearchAppConfig;
-import com.youtube.search.managd.SearchScheduler;
-import com.youtube.search.manager.impl.YoutubeSearchManager;
+import com.youtube.search.managd.YoutubeDataScheduler;
 import com.youtube.search.module.SearchModule;
 import io.dropwizard.Application;
 import io.dropwizard.jersey.jackson.JsonProcessingExceptionMapper;
@@ -27,9 +26,9 @@ public class SearchApplication extends Application<SearchAppConfig> {
         environment.healthChecks().register("search-app",
                 guiceBundle.getInjector().getInstance(SearchAppHealthCheck.class));
 
-        SearchScheduler searchScheduler = guiceBundle.getInjector().getInstance(SearchScheduler.class);
+        YoutubeDataScheduler youtubeDataScheduler = guiceBundle.getInjector().getInstance(YoutubeDataScheduler.class);
         try {
-            searchScheduler.start();
+            youtubeDataScheduler.start();
             log.info("Started search scheduler");
         } catch (Exception e) {
             log.error("Error starting search scheduler {}", e);
