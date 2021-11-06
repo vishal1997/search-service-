@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+MAIN_CLASS="com.youtube.search.SearchApplication"
+java  -cp target/lib/*:target/search-api-1.0-SNAPSHOT.jar ${MAIN_CLASS} server src/main/resources/config.yaml
+#java  -cp search-service/lib/*:search-service/search-api-1.0-SNAPSHOT.jar ${MAIN_CLASS} server search-service/config.yaml

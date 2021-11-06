@@ -1,0 +1,87 @@
+indexName: video_details
+
+{
+  "aliases": {
+    "concepts": {}
+  },
+  "mappings": {
+    "properties": {
+      "videoId": {
+        "type": "keyword"
+      },
+      "publishedAt": {
+        "type": "keyword"
+      },
+      "channelId": {
+        "type": "keyword"
+      },
+      "title": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "description": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          }
+        }
+      },
+      "channelTitle": {
+        "type": "keyword"
+      },
+      "publishTime": {
+        "type": "keyword"
+      }
+    }
+  }
+}
+
+curl :
+
+curl --location --request PUT 'http://127.0.0.1:9200/video_details/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+"aliases": {
+"concepts": {}
+},
+"mappings": {
+"properties": {
+"videoId": {
+"type": "keyword"
+},
+"publishedAt": {
+"type": "keyword"
+},
+"channelId": {
+"type": "keyword"
+},
+"title": {
+"type": "text",
+"fields": {
+"raw": {
+"type": "keyword"
+}
+}
+},
+"description": {
+"type": "text",
+"fields": {
+"raw": {
+"type": "keyword"
+}
+}
+},
+"channelTitle": {
+"type": "keyword"
+},
+"publishTime": {
+"type": "keyword"
+}
+}
+}
+}'
