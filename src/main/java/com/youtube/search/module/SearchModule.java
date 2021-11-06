@@ -12,6 +12,8 @@ import com.youtube.search.dao.YoutubeDataDao;
 import com.youtube.search.dao.impl.YoutubeDataDaoImpl;
 import com.youtube.search.manager.YoutubeDataManager;
 import com.youtube.search.manager.impl.YoutubeDataManagerImpl;
+import com.youtube.search.service.YoutubeService;
+import com.youtube.search.service.impl.YoutubeServiceImpl;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -30,6 +32,7 @@ public class SearchModule extends AbstractModule {
 
         bind(YoutubeDataManager.class).to(YoutubeDataManagerImpl.class);
         bind(YoutubeDataDao.class).to(YoutubeDataDaoImpl.class);
+        bind(YoutubeService.class).to(YoutubeServiceImpl.class);
     }
 
     @Provides
