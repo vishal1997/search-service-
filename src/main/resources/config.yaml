@@ -50,10 +50,10 @@ searchRequest:
 
 schedulerConfig:
   initialDelay: 10
-  period: 100000
+  period: 10000
   threadPool: 1
 
 googleSearchApi: https://www.googleapis.com/youtube/v3/search
-googleSearchApiKey: AIzaSyBCXHmn5SIGp5hFCiRniJBMLnKxAcJZrlM
+googleSearchApiKey: AIzaSyBxDx703YPymTIxTgi6uS_NFUMFm-M3dso
 elasticsearch: ["http://localhost:9200"]
 indexName: video_details
