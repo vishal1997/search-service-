@@ -35,4 +35,6 @@ public class SearchAppConfig extends Configuration {
 
     @JsonProperty("elasticsearch")
     private List<String> elasticsearchHosts;
+
+    private String indexName;
 }

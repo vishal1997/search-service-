@@ -25,10 +25,17 @@ logging:
   level: INFO
   appenders:
     - type: console
-      threshold: DEBUG
+      threshold: INFO
       timeZone: IST
       target: stdout
-
+    - type: console
+      threshold: ERROR
+      timeZone: IST
+      target: stdout
+    - type: file
+      currentLogFilename: /tmp/searchapi.log
+      archivedLogFilenamePattern: /tmp/searchapir-%d.log.gz
+      archivedFileCount: 5
 youtubeHttpConfig:
   httpClientTimeToLiveInMs: 10000
   httpClientMaxTotal: 10
@@ -43,8 +50,10 @@ searchRequest:
 
 schedulerConfig:
   initialDelay: 10
-  period: 10
-  threadPool: 2
+  period: 100000
+  threadPool: 1
 
 googleSearchApi: https://www.googleapis.com/youtube/v3/search
-googleSearchApiKey: AIzaSyBxDx703YPymTIxTgi6uS_NFUMFm-M3dso
+googleSearchApiKey: AIzaSyBCXHmn5SIGp5hFCiRniJBMLnKxAcJZrlM
+elasticsearch: ["http://localhost:9200"]
+indexName: video_details

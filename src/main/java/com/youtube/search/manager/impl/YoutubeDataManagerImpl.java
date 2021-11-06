@@ -1,6 +1,7 @@
 package com.youtube.search.manager.impl;
 
 import com.google.inject.Inject;
+import com.youtube.search.dao.YoutubeDataDao;
 import com.youtube.search.exception.YoutubeResponseParseException;
 import com.youtube.search.exception.YoutubeSearchException;
 import com.youtube.search.client.YoutubeClient;
@@ -20,12 +21,14 @@ public class YoutubeDataManagerImpl implements YoutubeDataManager {
 
     private SearchAppConfig searchAppConfig;
     private YoutubeClient youtubeClient;
+    private YoutubeDataDao youtubeDataDao;
 
     @Inject
-    public YoutubeDataManagerImpl(SearchAppConfig searchAppConfig, YoutubeClient youtubeClient) {
+    public YoutubeDataManagerImpl(SearchAppConfig searchAppConfig, YoutubeClient youtubeClient, YoutubeDataDao youtubeDataDao) {
 
         this.youtubeClient = youtubeClient;
         this.searchAppConfig = searchAppConfig;
+        this.youtubeDataDao = youtubeDataDao;
     }
 
 
@@ -46,6 +49,7 @@ public class YoutubeDataManagerImpl implements YoutubeDataManager {
                     .build();
 
             SearchResponse searchResponse = youtubeClient.search(searchRequest);
+            youtubeDataDao.put(searchResponse.getItems());
         } catch (YoutubeSearchException | YoutubeResponseParseException e) {
             log.error("Error for query {}", searchRequest);
         }
