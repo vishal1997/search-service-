@@ -22,7 +22,7 @@ import java.util.Map;
 @Slf4j
 public class HttpClient {
 
-    private CloseableHttpClient client;
+    private final CloseableHttpClient client;
 
     public HttpClient(CloseableHttpClient client) {
 

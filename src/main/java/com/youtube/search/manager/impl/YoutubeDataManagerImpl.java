@@ -19,9 +19,9 @@ import java.util.Date;
 @Slf4j
 public class YoutubeDataManagerImpl implements YoutubeDataManager {
 
-    private SearchAppConfig searchAppConfig;
-    private YoutubeClient youtubeClient;
-    private YoutubeDataDao youtubeDataDao;
+    private final SearchAppConfig searchAppConfig;
+    private final YoutubeClient youtubeClient;
+    private final YoutubeDataDao youtubeDataDao;
 
     @Inject
     public YoutubeDataManagerImpl(SearchAppConfig searchAppConfig, YoutubeClient youtubeClient, YoutubeDataDao youtubeDataDao) {
@@ -36,11 +36,10 @@ public class YoutubeDataManagerImpl implements YoutubeDataManager {
     public void populateData(SearchRequest searchRequest) {
 
         try {
-
             Date date = Date.from(new Date().toInstant().minusSeconds(searchAppConfig.getSchedulerConfig().getPeriod()));
-
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
             String dateAsISOString = df.format(date);
+
             searchRequest = SearchRequest.builder()
                     .part(searchAppConfig.getSearchRequest().getPart())
                     .publishedAfter(dateAsISOString)

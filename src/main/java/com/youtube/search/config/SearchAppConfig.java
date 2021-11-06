@@ -27,14 +27,19 @@ public class SearchAppConfig extends Configuration {
     @NotNull
     private SchedulerConfig schedulerConfig;
 
+    @NotNull
     private String googleSearchApi;
 
+    @NotNull
     private String googleSearchApiKey;
 
+    @NotNull
     private SearchRequest searchRequest;
 
+    @NotNull
     @JsonProperty("elasticsearch")
     private List<String> elasticsearchHosts;
 
+    @NotNull
     private String indexName;
 }

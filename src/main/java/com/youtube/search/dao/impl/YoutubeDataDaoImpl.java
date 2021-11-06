@@ -42,12 +42,15 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Youtube Data layer
+ */
 @Slf4j
 public class YoutubeDataDaoImpl implements YoutubeDataDao {
 
     private final RestHighLevelClient client;
-    private SearchAppConfig config;
-    private ObjectMapper objectMapper;
+    private final SearchAppConfig config;
+    private final ObjectMapper objectMapper;
     private final String FIELDS[] = { "title", "title.keyword", "description", "description.keyword"};
 
     @Inject
@@ -60,6 +63,9 @@ public class YoutubeDataDaoImpl implements YoutubeDataDao {
     @Override
     public VideoDataResponse search(String query, String pageId) throws YoutubeSearchException {
 
+        /**
+         * TODO If else block can be eliminated using factory pattern
+         */
         SearchResponse searchResponse;
         if (StringUtils.isEmpty(pageId)) {
             SearchRequest searchRequest = searchRequestBuilder(query);
@@ -84,6 +90,9 @@ public class YoutubeDataDaoImpl implements YoutubeDataDao {
     @Override
     public VideoDataResponse get(String pageId) throws YoutubeSearchException {
 
+        /**
+         * TODO Similar to search method can be modified to remove duplicate code
+         */
         SearchResponse searchResponse;
         if (StringUtils.isEmpty(pageId)) {
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -116,9 +125,11 @@ public class YoutubeDataDaoImpl implements YoutubeDataDao {
         try {
             BulkResponse bulkResponse = client.bulk(bulkRequest, RequestOptions.DEFAULT);
         } catch (IOException e) {
+            /**
+             * TODO Ignoring exception in the background process for now. This can be put in some store to have a track of all the failure and look into fix.
+             */
             log.error("Exception while inserting video data to Elasticsearch: {}", e);
         }
-
     }
 
     @Override
@@ -161,7 +172,8 @@ public class YoutubeDataDaoImpl implements YoutubeDataDao {
                 VideoDetails videoDetails = objectMapper.readValue(searchHit.getSourceAsString(), VideoDetails.class);
                 videoDetailsList.add(videoDetails);
             } catch (IOException e) {
-
+                // TODO Ignoring it for now
+                log.error("Not able to serialize data ");
             }
         }
 

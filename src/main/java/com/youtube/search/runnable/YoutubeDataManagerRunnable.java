@@ -5,8 +5,8 @@ import com.youtube.search.manager.YoutubeDataManager;
 
 public class YoutubeDataManagerRunnable implements Runnable {
 
-    private YoutubeDataManager youtubeDataManager;
-    private SearchAppConfig config;
+    private final YoutubeDataManager youtubeDataManager;
+    private final SearchAppConfig config;
 
     public YoutubeDataManagerRunnable(YoutubeDataManager youtubeDataManager, SearchAppConfig config) {
         this.youtubeDataManager = youtubeDataManager;

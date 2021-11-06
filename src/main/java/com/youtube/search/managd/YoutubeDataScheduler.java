@@ -12,10 +12,13 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Create a fixed scheduler which will run in background to get data from youtube and put in ES
+ */
 public class YoutubeDataScheduler implements Managed {
 
-    private SearchAppConfig config;
-    private YoutubeDataManager youtubeDataManager;
+    private final SearchAppConfig config;
+    private final YoutubeDataManager youtubeDataManager;
 
     @Inject
     public YoutubeDataScheduler(SearchAppConfig config, YoutubeDataManager youtubeDataManager) {

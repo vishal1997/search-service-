@@ -24,7 +24,7 @@ import java.util.List;
 @Slf4j
 public class SearchResource {
 
-    private YoutubeService youtubeService;
+    private final YoutubeService youtubeService;
 
     @Inject
     public SearchResource(YoutubeService youtubeService) {

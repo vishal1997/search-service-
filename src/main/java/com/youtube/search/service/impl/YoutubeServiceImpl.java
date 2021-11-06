@@ -7,10 +7,13 @@ import com.youtube.search.model.response.VideoDataResponse;
 import com.youtube.search.service.YoutubeService;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Youtube Service layer
+ */
 @Slf4j
 public class YoutubeServiceImpl implements YoutubeService {
 
-    private YoutubeDataDao youtubeDataDao;
+    private final YoutubeDataDao youtubeDataDao;
 
     @Inject
     public YoutubeServiceImpl(YoutubeDataDao youtubeDataDao) {

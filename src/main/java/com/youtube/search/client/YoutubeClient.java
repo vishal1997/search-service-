@@ -21,9 +21,9 @@ import java.util.Map;
 @Slf4j
 public class YoutubeClient {
 
-    private HttpClient httpClient;
-    private SearchAppConfig config;
-    private ObjectMapper objectMapper;
+    private final HttpClient httpClient;
+    private final SearchAppConfig config;
+    private final ObjectMapper objectMapper;
 
     @Inject
     public YoutubeClient(@Named("youtubeHttpClient") CloseableHttpClient httpClient, SearchAppConfig config,
